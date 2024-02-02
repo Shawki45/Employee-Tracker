@@ -1,7 +1,8 @@
 // Simple basic start up approach to Employee Tracker
 
+const db = require("./db/connection")
 // get inquirer 
-
+const inquirer = require('inquirer')
 
 /* prompt with -- 
   List:
@@ -12,7 +13,16 @@
   - change role
   - add role
 */
-
+function start(){
+    inquirer.prompt([
+        {
+            type: "list",
+            name: "roles",
+            message: "Which do you like to see?",
+            choices: [- 'view employees', 'view departments', 'view roles', 'add employee', 'change role', 'add role']
+        }
+    ])
+}
 // This will have the initial prompt for "What do you want to do?"
 start();
 
