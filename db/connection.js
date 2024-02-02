@@ -5,10 +5,10 @@ const connection = mysql.createConnection(
       // MySQL username,
       user: 'root',
       // TODO: Add MySQL password here
-      password: '',
-      database: 'employees_db'
+      password: 'root',
+      database: 'Employee_Tracker'
     },
-    console.log(`Connected to the employees_db database.`)
+    console.log(`Connected to the Employee_Tracker database.`)
   );
 
   connection.connect(function(err){

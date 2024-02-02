@@ -19,36 +19,47 @@ function start(){
             type: "list",
             name: "roles",
             message: "Which do you like to see?",
-            choices: [- 'view employees', 'view departments', 'view roles', 'add employee', 'change role', 'add role']
+            choices: [ 'view employees', 'view departments', 'view roles', 'add employee', 'change role', 'add role']
         }
     ])
+    .then((response)=>{
+        console.log(response.roles)
+        switch (response.roles) {
+            case `view employees`:
+                getAllEmployees();
+                break;
+            case `view roles`:
+            getAllRoles();
+            break;
+            case 'view departments':
+                getAllDepartments();
+                break;
+        
+            default:
+                break;
+        }
+    })
 }
 // This will have the initial prompt for "What do you want to do?"
 start();
 
 /** ToDo --eventually I have a Join that shows the department name */
 function getAllEmployees(params) {
-    db.query(`select * from employees`,(err,results)=>{
+    db.query(`select * from employee`,(err,results)=>{
         console.table(results);
         start();
     });
 }
 
 function getAllRoles(params) {
-    db.query(`select * from roles`,(err,results)=>{
+    db.query(`select * from role`,(err,results)=>{
         console.table(results);
         start();
     })
 }
-// function to query fro all employees and log the table
-switch (key) {
-    case `view employees`:
-        getAllEmployees();
-        break;
-    case `view roles`:
-    getAllRoles();
-    break;
-
-    default:
-        break;
+function getAllDepartments(params){
+    db.query('select * from department',(err,results)=>{
+        console.table(results);
+        start();
+    })
 }
