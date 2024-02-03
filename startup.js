@@ -21,7 +21,11 @@ function start(){
             message: "Which do you like to see?",
             choices: [ 'view employees', 'view departments', 'view roles', 'add employee', 'change role', 'add role']
         }
+        
     ])
+    
+
+    
     .then((response)=>{
         console.log(response.roles)
         switch (response.roles) {
@@ -34,6 +38,9 @@ function start(){
             case 'view departments':
                 getAllDepartments();
                 break;
+                case 'add employee':
+                    addEmployee();
+                    break;
         
             default:
                 break;
@@ -61,5 +68,11 @@ function getAllDepartments(params){
     db.query('select * from department',(err,results)=>{
         console.table(results);
         start();
+    })
+}
+function addEmployee(params){
+    db.query('select * from role',(err,results)=>{
+        console.log(results);
+        start()
     })
 }
